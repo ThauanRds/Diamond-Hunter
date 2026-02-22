@@ -5,6 +5,7 @@ using UnityEngine;
 public class Moviment : MonoBehaviour
 {
     private CharacterController controller;
+    private Animator anim;
 
     [SerializeField] private float speed;
     private Vector3 gravity = new Vector3(0, -9.81f, 0);
@@ -13,6 +14,7 @@ public class Moviment : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -31,5 +33,7 @@ public class Moviment : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10);
         }
+
+        anim.SetBool("Walk", direction != Vector3.zero);
     }
 }
