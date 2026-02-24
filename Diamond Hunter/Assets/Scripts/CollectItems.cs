@@ -14,13 +14,20 @@ public class CollectItems : MonoBehaviour
     {
         if (hit.gameObject.tag == "Collectable")
         {
-            diamondsCollected++;
-            playerUI.UpdateDiamondText(diamondsCollected, 5);
-            Destroy(hit.gameObject);
+            Diamond diamond = hit.gameObject.GetComponent<Diamond>();
 
-            if (diamondsCollected >= 5)
+            if (diamond.hasCollected == false)
             {
-                onEndGame.Invoke();
+                diamond.hasCollected = true;
+
+                diamondsCollected++;
+                playerUI.UpdateDiamondText(diamondsCollected, 5);
+                Destroy(hit.gameObject);
+
+                if (diamondsCollected >= 5)
+                {
+                    onEndGame.Invoke();
+                }
             }
         }
     }

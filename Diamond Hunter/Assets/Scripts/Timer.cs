@@ -13,4 +13,9 @@ public class Timer : MonoBehaviour
         timeOfGame += Time.deltaTime;
         playerUI.UpdateTimerText(timeOfGame);
     }
+
+    public void SaveTime()
+    {
+        RecordeManager.SaveGameTime(timeOfGame);
+    }
 }
