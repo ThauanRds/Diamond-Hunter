@@ -10,6 +10,9 @@ public class Moviment : MonoBehaviour
     [SerializeField] private float speed;
     private Vector3 gravity = new Vector3(0, -9.81f, 0);
 
+    [SerializeField] private AudioSource stepAudioSource;
+    [SerializeField] private AudioClip[] stepAudioClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,5 +38,11 @@ public class Moviment : MonoBehaviour
         }
 
         anim.SetBool("Walk", direction != Vector3.zero);
+    }
+
+    private void OnStep()
+    {
+        int index = Random.Range(0, stepAudioClip.Length);
+        stepAudioSource.PlayOneShot(stepAudioClip[index]);
     }
 }

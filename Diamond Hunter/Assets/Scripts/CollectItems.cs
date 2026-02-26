@@ -7,6 +7,7 @@ public class CollectItems : MonoBehaviour
 {
     [SerializeField] private int diamondsCollected;
     [SerializeField] private PlayerUI playerUI;
+    [SerializeField] private AudioSource collectAudio;
 
     [SerializeField] private UnityEvent onEndGame;
 
@@ -28,6 +29,8 @@ public class CollectItems : MonoBehaviour
                 {
                     onEndGame.Invoke();
                 }
+
+                collectAudio.Play();
             }
         }
     }
